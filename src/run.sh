@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ghdl -a ports.vhd
 ghdl -e ports
 
