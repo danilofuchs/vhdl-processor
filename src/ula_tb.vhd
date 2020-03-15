@@ -116,6 +116,7 @@ begin
         op_s <= "11"; -- GTE
         -- Expected: flag = 1
         wait for 50 ns;
+        -- TODO: assert flag_s = '1' report "2 >= 2 == false!" severity error;
 
         wait;
     end process;
