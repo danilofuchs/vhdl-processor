@@ -1,8 +1,8 @@
+-- Author: Danilo Fuchs
+-- Simple AND port
+
 library IEEE;
 use IEEE.std_logic_1164.all;
-
--- Code: Modern VHDL, VHDL Formatter, VHDL LS
--- Tools: ghdl, gtkwave
 
 entity ports is
     port (
