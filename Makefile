@@ -20,3 +20,11 @@ reg16bits:
 	ghdl -a src/reg16bits_tb.vhd 
 	ghdl -e reg16bits_tb 
 	ghdl -r reg16bits_tb --stop-time=3000ns --wave=src/reg16bits_tb.ghw 
+
+register_file:
+	make reg16bits
+	ghdl -a src/register_file.vhd
+	ghdl -e register_file
+	ghdl -a src/register_file_tb.vhd
+	ghdl -e register_file_tb
+	ghdl -r register_file_tb --stop-time=3000ns --wave=src/register_file_tb.ghw 
