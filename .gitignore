@@ -1,5 +1,12 @@
+# GHDL
 *.cf
+
+# Waves
 *.ghw
+*.vcd
+
+# GTKWave
 *.gtkw
 
+# Misc
 exports/
