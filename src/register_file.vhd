@@ -1,3 +1,6 @@
+-- Author: Danilo Fuchs
+-- 8x16 register file
+
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;

@@ -1,5 +1,5 @@
 -- Author: Danilo Fuchs
--- ULA - Unidade Lógica Aritmética
+-- 16 bits register
 
 library IEEE;
 use IEEE.std_logic_1164.all;
