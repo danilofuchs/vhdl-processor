@@ -30,21 +30,23 @@ architecture a_register_file of register_file is
     end component;
 
     signal wr_en_1, wr_en_2, wr_en_3, wr_en_4, wr_en_5, wr_en_6, wr_en_7 : std_logic := '0';
-    signal data_in_1, data_in_2, data_in_3, data_in_4, data_in_5, data_in_6, data_in_7 : unsigned(15 downto 0) := "0000000000000000";
-    signal data_out_1, data_out_2, data_out_3, data_out_4, data_out_5, data_out_6, data_out_7 : unsigned(15 downto 0) := "0000000000000000";
+    signal data_in_s : unsigned(15 downto 0) := "0000000000000000";
+    signal data_out_0, data_out_1, data_out_2, data_out_3, data_out_4, data_out_5, data_out_6, data_out_7 : unsigned(15 downto 0) := "0000000000000000";
 
 begin
-    r0 : reg16bits port map(clk => clk, rst => '1', wr_en => '0', data_in => "0000000000000000"); -- Always 0x0
-    r1 : reg16bits port map(clk => clk, rst => rst, wr_en => wr_en_1, data_in => data_in_1, data_out => data_out_1);
-    r2 : reg16bits port map(clk => clk, rst => rst, wr_en => wr_en_2, data_in => data_in_2, data_out => data_out_2);
-    r3 : reg16bits port map(clk => clk, rst => rst, wr_en => wr_en_3, data_in => data_in_3, data_out => data_out_3);
-    r4 : reg16bits port map(clk => clk, rst => rst, wr_en => wr_en_4, data_in => data_in_4, data_out => data_out_4);
-    r5 : reg16bits port map(clk => clk, rst => rst, wr_en => wr_en_5, data_in => data_in_5, data_out => data_out_5);
-    r6 : reg16bits port map(clk => clk, rst => rst, wr_en => wr_en_6, data_in => data_in_6, data_out => data_out_6);
-    r7 : reg16bits port map(clk => clk, rst => rst, wr_en => wr_en_7, data_in => data_in_7, data_out => data_out_7);
+    data_in_s <= wd3;
+
+    r0 : reg16bits port map(clk => clk, rst => '1', wr_en => '0', data_in => "0000000000000000", data_out => data_out_0); -- Always 0x0
+    r1 : reg16bits port map(clk => clk, rst => rst, wr_en => wr_en_1, data_in => data_in_s, data_out => data_out_1);
+    r2 : reg16bits port map(clk => clk, rst => rst, wr_en => wr_en_2, data_in => data_in_s, data_out => data_out_2);
+    r3 : reg16bits port map(clk => clk, rst => rst, wr_en => wr_en_3, data_in => data_in_s, data_out => data_out_3);
+    r4 : reg16bits port map(clk => clk, rst => rst, wr_en => wr_en_4, data_in => data_in_s, data_out => data_out_4);
+    r5 : reg16bits port map(clk => clk, rst => rst, wr_en => wr_en_5, data_in => data_in_s, data_out => data_out_5);
+    r6 : reg16bits port map(clk => clk, rst => rst, wr_en => wr_en_6, data_in => data_in_s, data_out => data_out_6);
+    r7 : reg16bits port map(clk => clk, rst => rst, wr_en => wr_en_7, data_in => data_in_s, data_out => data_out_7);
 
     rd1 <=
-        "0000000000000000" when a1 = "000" else
+        data_out_0 when a1 = "000" else
         data_out_1 when a1 = "001" else
         data_out_2 when a1 = "010" else
         data_out_3 when a1 = "011" else
@@ -55,7 +57,7 @@ begin
         "0000000000000000";
 
     rd2 <=
-        "0000000000000000" when a2 = "000" else
+        data_out_0 when a2 = "000" else
         data_out_1 when a2 = "001" else
         data_out_2 when a2 = "010" else
         data_out_3 when a2 = "011" else
@@ -65,4 +67,31 @@ begin
         data_out_7 when a2 = "111" else
         "0000000000000000";
 
+    wr_en_1 <=
+        we3 when a3 = "001" else
+        '0';
+
+    wr_en_2 <=
+        we3 when a3 = "010" else
+        '0';
+
+    wr_en_3 <=
+        we3 when a3 = "011" else
+        '0';
+
+    wr_en_4 <=
+        we3 when a3 = "100" else
+        '0';
+
+    wr_en_5 <=
+        we3 when a3 = "101" else
+        '0';
+
+    wr_en_6 <=
+        we3 when a3 = "110" else
+        '0';
+
+    wr_en_7 <=
+        we3 when a3 = "111" else
+        '0';
 end architecture a_register_file;
