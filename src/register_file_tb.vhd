@@ -26,9 +26,9 @@ architecture a_register_file_tb of register_file_tb is
         );
     end component;
 
-    signal clk_s, rst_s, we3_s : std_logic;
-    signal a1_s, a2_s, a3_s : unsigned(2 downto 0);
-    signal wd3_s, rd1_s, rd2_s : unsigned(15 downto 0);
+    signal clk_s, rst_s, we3_s : std_logic := '0';
+    signal a1_s, a2_s, a3_s : unsigned(2 downto 0) := "000";
+    signal wd3_s, rd1_s, rd2_s : unsigned(15 downto 0) := "0000000000000000";
 
 begin
 

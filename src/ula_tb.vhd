@@ -19,10 +19,10 @@ architecture a_ula_tb of ula_tb is
         );
     end component;
 
-    signal in_a_s, in_b_s : unsigned(15 downto 0);
-    signal op_s : unsigned(1 downto 0);
-    signal out_s_s : unsigned(15 downto 0);
-    signal flag_s : std_logic;
+    signal in_a_s, in_b_s : unsigned(15 downto 0) := "0000000000000000";
+    signal op_s : unsigned(1 downto 0) := "00";
+    signal out_s_s : unsigned(15 downto 0) := "0000000000000000";
+    signal flag_s : std_logic := '0';
 begin
 
     uut : ula port map(
