@@ -1,0 +1,51 @@
+[*]
+[*] GTKWave Analyzer v3.3.98 (w)1999-2019 BSI
+[*] Sat Mar 21 20:16:24 2020
+[*]
+[dumpfile] "/mnt/d/Users/Danilo/Documents/git/utfpr/vhdl-processor/src/register_file_tb.ghw"
+[dumpfile_mtime] "Sat Mar 21 20:13:53 2020"
+[dumpfile_size] 3868
+[savefile] "/mnt/d/Users/Danilo/Documents/git/utfpr/vhdl-processor/src/register_file.gtkw"
+[timestart] 1037000000
+[size] 1000 600
+[pos] -1 -1
+*-27.766422 1196000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.register_file_tb.
+[treeopen] top.register_file_tb.uut.
+[treeopen] top.register_file_tb.uut.r0.
+[treeopen] top.register_file_tb.uut.r2.
+[treeopen] top.register_file_tb.uut.r3.
+[sst_width] 213
+[signals_width] 184
+[sst_expanded] 1
+[sst_vpaned_height] 213
+@28
+top.register_file_tb.clk_s
+top.register_file_tb.we3_s
+top.register_file_tb.rst_s
+#{top.register_file_tb.a1_s[2:0]} top.register_file_tb.a1_s[2] top.register_file_tb.a1_s[1] top.register_file_tb.a1_s[0]
+@22
+#{top.register_file_tb.rd1_s[15:0]} top.register_file_tb.rd1_s[15] top.register_file_tb.rd1_s[14] top.register_file_tb.rd1_s[13] top.register_file_tb.rd1_s[12] top.register_file_tb.rd1_s[11] top.register_file_tb.rd1_s[10] top.register_file_tb.rd1_s[9] top.register_file_tb.rd1_s[8] top.register_file_tb.rd1_s[7] top.register_file_tb.rd1_s[6] top.register_file_tb.rd1_s[5] top.register_file_tb.rd1_s[4] top.register_file_tb.rd1_s[3] top.register_file_tb.rd1_s[2] top.register_file_tb.rd1_s[1] top.register_file_tb.rd1_s[0]
+@28
+#{top.register_file_tb.a2_s[2:0]} top.register_file_tb.a2_s[2] top.register_file_tb.a2_s[1] top.register_file_tb.a2_s[0]
+@22
+#{top.register_file_tb.rd2_s[15:0]} top.register_file_tb.rd2_s[15] top.register_file_tb.rd2_s[14] top.register_file_tb.rd2_s[13] top.register_file_tb.rd2_s[12] top.register_file_tb.rd2_s[11] top.register_file_tb.rd2_s[10] top.register_file_tb.rd2_s[9] top.register_file_tb.rd2_s[8] top.register_file_tb.rd2_s[7] top.register_file_tb.rd2_s[6] top.register_file_tb.rd2_s[5] top.register_file_tb.rd2_s[4] top.register_file_tb.rd2_s[3] top.register_file_tb.rd2_s[2] top.register_file_tb.rd2_s[1] top.register_file_tb.rd2_s[0]
+@28
+#{top.register_file_tb.a3_s[2:0]} top.register_file_tb.a3_s[2] top.register_file_tb.a3_s[1] top.register_file_tb.a3_s[0]
+@22
+#{top.register_file_tb.wd3_s[15:0]} top.register_file_tb.wd3_s[15] top.register_file_tb.wd3_s[14] top.register_file_tb.wd3_s[13] top.register_file_tb.wd3_s[12] top.register_file_tb.wd3_s[11] top.register_file_tb.wd3_s[10] top.register_file_tb.wd3_s[9] top.register_file_tb.wd3_s[8] top.register_file_tb.wd3_s[7] top.register_file_tb.wd3_s[6] top.register_file_tb.wd3_s[5] top.register_file_tb.wd3_s[4] top.register_file_tb.wd3_s[3] top.register_file_tb.wd3_s[2] top.register_file_tb.wd3_s[1] top.register_file_tb.wd3_s[0]
+@28
+top.register_file_tb.uut.wr_en_1
+@22
+#{top.register_file_tb.uut.r1.reg[15:0]} top.register_file_tb.uut.r1.reg[15] top.register_file_tb.uut.r1.reg[14] top.register_file_tb.uut.r1.reg[13] top.register_file_tb.uut.r1.reg[12] top.register_file_tb.uut.r1.reg[11] top.register_file_tb.uut.r1.reg[10] top.register_file_tb.uut.r1.reg[9] top.register_file_tb.uut.r1.reg[8] top.register_file_tb.uut.r1.reg[7] top.register_file_tb.uut.r1.reg[6] top.register_file_tb.uut.r1.reg[5] top.register_file_tb.uut.r1.reg[4] top.register_file_tb.uut.r1.reg[3] top.register_file_tb.uut.r1.reg[2] top.register_file_tb.uut.r1.reg[1] top.register_file_tb.uut.r1.reg[0]
+@28
+top.register_file_tb.uut.wr_en_2
+@22
+#{top.register_file_tb.uut.r2.reg[15:0]} top.register_file_tb.uut.r2.reg[15] top.register_file_tb.uut.r2.reg[14] top.register_file_tb.uut.r2.reg[13] top.register_file_tb.uut.r2.reg[12] top.register_file_tb.uut.r2.reg[11] top.register_file_tb.uut.r2.reg[10] top.register_file_tb.uut.r2.reg[9] top.register_file_tb.uut.r2.reg[8] top.register_file_tb.uut.r2.reg[7] top.register_file_tb.uut.r2.reg[6] top.register_file_tb.uut.r2.reg[5] top.register_file_tb.uut.r2.reg[4] top.register_file_tb.uut.r2.reg[3] top.register_file_tb.uut.r2.reg[2] top.register_file_tb.uut.r2.reg[1] top.register_file_tb.uut.r2.reg[0]
+@28
+top.register_file_tb.uut.wr_en_3
+@23
+#{top.register_file_tb.uut.r3.reg[15:0]} top.register_file_tb.uut.r3.reg[15] top.register_file_tb.uut.r3.reg[14] top.register_file_tb.uut.r3.reg[13] top.register_file_tb.uut.r3.reg[12] top.register_file_tb.uut.r3.reg[11] top.register_file_tb.uut.r3.reg[10] top.register_file_tb.uut.r3.reg[9] top.register_file_tb.uut.r3.reg[8] top.register_file_tb.uut.r3.reg[7] top.register_file_tb.uut.r3.reg[6] top.register_file_tb.uut.r3.reg[5] top.register_file_tb.uut.r3.reg[4] top.register_file_tb.uut.r3.reg[3] top.register_file_tb.uut.r3.reg[2] top.register_file_tb.uut.r3.reg[1] top.register_file_tb.uut.r3.reg[0]
+[pattern_trace] 1
+[pattern_trace] 0
