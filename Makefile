@@ -45,3 +45,10 @@ rom:
 	ghdl -a src/rom_tb.vhd
 	ghdl -e rom_tb
 	ghdl -r rom_tb --stop-time=3000ns --wave=src/rom_tb.ghw
+
+state_machine:
+	ghdl -a src/state_machine.vhd
+	ghdl -e state_machine
+	ghdl -a src/state_machine_tb.vhd
+	ghdl -e state_machine_tb
+	ghdl -r state_machine_tb --stop-time=3000ns --wave=src/state_machine_tb.ghw
