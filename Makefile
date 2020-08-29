@@ -47,8 +47,18 @@ state_machine:
 	ghdl -r state_machine_tb --stop-time=3000ns --wave=src/state_machine_tb.ghw
 
 program_counter:
+	make reg16bits
 	ghdl -a src/program_counter.vhd
 	ghdl -e program_counter
 	ghdl -a src/program_counter_tb.vhd
 	ghdl -e program_counter_tb
 	ghdl -r program_counter_tb --stop-time=3000ns --wave=src/program_counter_tb.ghw
+
+control_unit:
+	make rom
+	make program_counter
+	ghdl -a src/control_unit.vhd
+	ghdl -e control_unit
+	ghdl -a src/control_unit_tb.vhd
+	ghdl -e control_unit_tb
+	ghdl -r control_unit_tb --stop-time=3000ns --wave=src/control_unit_tb.ghw
