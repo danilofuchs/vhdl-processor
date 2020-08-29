@@ -12,8 +12,7 @@ architecture a_control_unit_tb of control_unit_tb is
     component control_unit
         port (
             clk : in std_logic;
-            rst : in std_logic;
-            data : out unsigned(11 downto 0)
+            rst : in std_logic
         );
     end component;
 
@@ -23,8 +22,7 @@ begin
 
     uut : control_unit port map(
         clk => clk_s,
-        rst => rst_s,
-        data => data_s
+        rst => rst_s
     );
 
     process -- clock process
