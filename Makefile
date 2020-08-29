@@ -38,3 +38,10 @@ ula_regs:
 	ghdl -a src/ula_regs_tb.vhd
 	ghdl -e ula_regs_tb
 	ghdl -r ula_regs_tb --stop-time=3000ns --wave=src/ula_regs_tb.ghw
+
+rom:
+	ghdl -a src/rom.vhd
+	ghdl -e rom
+	ghdl -a src/rom_tb.vhd
+	ghdl -e rom_tb
+	ghdl -r rom_tb --stop-time=3000ns --wave=src/rom_tb.ghw
