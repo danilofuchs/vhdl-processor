@@ -8,13 +8,6 @@ ula:
 	ghdl -e ula_tb
 	ghdl -r ula_tb --wave=src/ula_tb.ghw
 
-ports:
-	ghdl -a src/ports.vhd
-	ghdl -e ports
-	ghdl -a src/ports_tb.vhd
-	ghdl -e ports_tb
-	ghdl -r ports_tb --wave=src/ports_tb.ghw
-
 reg16bits:
 	ghdl -a src/reg16bits.vhd
 	ghdl -e reg16bits
@@ -52,3 +45,10 @@ state_machine:
 	ghdl -a src/state_machine_tb.vhd
 	ghdl -e state_machine_tb
 	ghdl -r state_machine_tb --stop-time=3000ns --wave=src/state_machine_tb.ghw
+
+program_counter:
+	ghdl -a src/program_counter.vhd
+	ghdl -e program_counter
+	ghdl -a src/program_counter_tb.vhd
+	ghdl -e program_counter_tb
+	ghdl -r program_counter_tb --stop-time=3000ns --wave=src/program_counter_tb.ghw
