@@ -1,0 +1,38 @@
+[*]
+[*] GTKWave Analyzer v3.3.98 (w)1999-2019 BSI
+[*] Sat Aug 29 22:28:39 2020
+[*]
+[dumpfile] "/home/danilo/git/utfpr/vhdl-processor/src/control_unit_tb.ghw"
+[dumpfile_mtime] "Sat Aug 29 22:27:35 2020"
+[dumpfile_size] 10559
+[savefile] "/home/danilo/git/utfpr/vhdl-processor/src/control_unit_tb.gtkw"
+[timestart] 450000000
+[size] 1350 665
+[pos] -1 -1
+*-27.875874 1518000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.control_unit_tb.
+[treeopen] top.control_unit_tb.uut.
+[treeopen] top.control_unit_tb.uut.pc.
+[sst_width] 213
+[signals_width] 174
+[sst_expanded] 1
+[sst_vpaned_height] 174
+@28
+[color] 2
+top.control_unit_tb.clk_s
+[color] 2
+top.control_unit_tb.rst_s
+@23
++{pc} #{top.control_unit_tb.uut.pc.data_out[15:0]} top.control_unit_tb.uut.pc.data_out[15] top.control_unit_tb.uut.pc.data_out[14] top.control_unit_tb.uut.pc.data_out[13] top.control_unit_tb.uut.pc.data_out[12] top.control_unit_tb.uut.pc.data_out[11] top.control_unit_tb.uut.pc.data_out[10] top.control_unit_tb.uut.pc.data_out[9] top.control_unit_tb.uut.pc.data_out[8] top.control_unit_tb.uut.pc.data_out[7] top.control_unit_tb.uut.pc.data_out[6] top.control_unit_tb.uut.pc.data_out[5] top.control_unit_tb.uut.pc.data_out[4] top.control_unit_tb.uut.pc.data_out[3] top.control_unit_tb.uut.pc.data_out[2] top.control_unit_tb.uut.pc.data_out[1] top.control_unit_tb.uut.pc.data_out[0]
+@28
+top.control_unit_tb.uut.state_s
+#{top.control_unit_tb.uut.opcode[3:0]} top.control_unit_tb.uut.opcode[3] top.control_unit_tb.uut.opcode[2] top.control_unit_tb.uut.opcode[1] top.control_unit_tb.uut.opcode[0]
+#{top.control_unit_tb.uut.instruction[11:0]} top.control_unit_tb.uut.instruction[11] top.control_unit_tb.uut.instruction[10] top.control_unit_tb.uut.instruction[9] top.control_unit_tb.uut.instruction[8] top.control_unit_tb.uut.instruction[7] top.control_unit_tb.uut.instruction[6] top.control_unit_tb.uut.instruction[5] top.control_unit_tb.uut.instruction[4] top.control_unit_tb.uut.instruction[3] top.control_unit_tb.uut.instruction[2] top.control_unit_tb.uut.instruction[1] top.control_unit_tb.uut.instruction[0]
+[color] 3
+top.control_unit_tb.uut.jump_en
+@22
+[color] 3
+#{top.control_unit_tb.uut.jump_address[15:0]} top.control_unit_tb.uut.jump_address[15] top.control_unit_tb.uut.jump_address[14] top.control_unit_tb.uut.jump_address[13] top.control_unit_tb.uut.jump_address[12] top.control_unit_tb.uut.jump_address[11] top.control_unit_tb.uut.jump_address[10] top.control_unit_tb.uut.jump_address[9] top.control_unit_tb.uut.jump_address[8] top.control_unit_tb.uut.jump_address[7] top.control_unit_tb.uut.jump_address[6] top.control_unit_tb.uut.jump_address[5] top.control_unit_tb.uut.jump_address[4] top.control_unit_tb.uut.jump_address[3] top.control_unit_tb.uut.jump_address[2] top.control_unit_tb.uut.jump_address[1] top.control_unit_tb.uut.jump_address[0]
+[pattern_trace] 1
+[pattern_trace] 0

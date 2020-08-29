@@ -1,0 +1,25 @@
+[*]
+[*] GTKWave Analyzer v3.3.98 (w)1999-2019 BSI
+[*] Sat Aug 29 21:02:10 2020
+[*]
+[dumpfile] "/home/danilo/git/utfpr/vhdl-processor/src/state_machine_tb.ghw"
+[dumpfile_mtime] "Sat Aug 29 21:01:41 2020"
+[dumpfile_size] 945
+[savefile] "/home/danilo/git/utfpr/vhdl-processor/src/state_machine_tb.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] -1 -1
+*-29.784098 471000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.state_machine_tb.
+[sst_width] 213
+[signals_width] 86
+[sst_expanded] 1
+[sst_vpaned_height] 151
+@28
+top.state_machine_tb.clk_s
+top.state_machine_tb.rst_s
+@29
+top.state_machine_tb.state_s
+[pattern_trace] 1
+[pattern_trace] 0

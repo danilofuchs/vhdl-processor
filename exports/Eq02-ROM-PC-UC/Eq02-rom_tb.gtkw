@@ -1,0 +1,27 @@
+[*]
+[*] GTKWave Analyzer v3.3.98 (w)1999-2019 BSI
+[*] Sat Aug 29 20:47:08 2020
+[*]
+[dumpfile] "/home/danilo/git/utfpr/vhdl-processor/src/rom_tb.ghw"
+[dumpfile_mtime] "Sat Aug 29 20:46:54 2020"
+[dumpfile_size] 958
+[savefile] "/home/danilo/git/utfpr/vhdl-processor/src/rom_tb.gtkw"
+[timestart] 0
+[size] 1110 701
+[pos] -1 -1
+*-28.383020 122000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.rom_tb.
+[treeopen] top.rom_tb.uut.
+[sst_width] 213
+[signals_width] 142
+[sst_expanded] 1
+[sst_vpaned_height] 187
+@28
+top.rom_tb.clk_s
+@22
+#{top.rom_tb.address_s[6:0]} top.rom_tb.address_s[6] top.rom_tb.address_s[5] top.rom_tb.address_s[4] top.rom_tb.address_s[3] top.rom_tb.address_s[2] top.rom_tb.address_s[1] top.rom_tb.address_s[0]
+@29
+#{top.rom_tb.data_s[11:0]} top.rom_tb.data_s[11] top.rom_tb.data_s[10] top.rom_tb.data_s[9] top.rom_tb.data_s[8] top.rom_tb.data_s[7] top.rom_tb.data_s[6] top.rom_tb.data_s[5] top.rom_tb.data_s[4] top.rom_tb.data_s[3] top.rom_tb.data_s[2] top.rom_tb.data_s[1] top.rom_tb.data_s[0]
+[pattern_trace] 1
+[pattern_trace] 0
