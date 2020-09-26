@@ -11,7 +11,14 @@ ADD:
 
 Assembly: ADD $rd,$rs,$rt
 Equivalent: $rd = $rs + $rt
-Encoding: 0000 ssst ttdd d000
+Encoding: 0000_sss_ttt_ddd_000
+
+
+SUB: 
+
+Assembly: SUB $rd,$rs,$rt
+Equivalent: $rd = $rs + $rt
+Encoding: 0001_sss_ttt_ddd_000
 
 ===== Type I instructions ====
  ___________________
@@ -22,4 +29,15 @@ ADDI:
 
 Assembly: ADDI $rt,$rs,Imm
 Equivalent: $rt = $rs + Imm
-Encoding: 1000 ssst ttii iiii
+Encoding: 1000_sss_ttt_iiiiii
+
+
+===== Type J instructions =====
+ _________________
+|xxxx|iiiiiiiiiiii|
+ ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+
+J:
+
+Assembly: J Imm
+Encoding: 1111_iiiiiiiiiiii

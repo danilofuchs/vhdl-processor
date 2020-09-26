@@ -59,6 +59,7 @@ begin
     ula_op_sel <=
         -- Type R
         "00" when op_code = "0000" else -- ADD
+        "01" when op_code = "0001" else -- SUB
         -- Type I
         "00" when op_code = "1000" else -- ADDI
         "00";
@@ -77,7 +78,8 @@ begin
 
     reg_dest_sel <=
         -- Type R instructions
-        '1' when op_code = "0000" else
+        '1' when op_code = "0000" else -- ADD
+        '1' when op_code = "0001" else -- SUB
         -- Type I
         '0';
 
