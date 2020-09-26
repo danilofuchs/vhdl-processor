@@ -48,8 +48,8 @@ begin
         assert state_s = "00" report "state is not 0 initially" severity error;
         wait for 100 ns;
         assert state_s = "01" report "state not going to 1" severity error;
-        -- wait for 100 ns;
-        -- assert state_s = "10" report "state not going to 2" severity error;
+        wait for 100 ns;
+        assert state_s = "10" report "state not going to 2" severity error;
         wait for 100 ns;
         assert state_s = "00" report "state not going to 0" severity error;
 

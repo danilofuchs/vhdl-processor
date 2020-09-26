@@ -13,9 +13,10 @@ entity control_unit is
         op_code : in unsigned(3 downto 0);
 
         jump_en : out std_logic;
-        pc_wr_en : out std_logic
+        pc_wr_en : out std_logic;
 
-        -- ula_op : out unsigned(1 downto 0);
+        ula_op : out unsigned(1 downto 0);
+        ula_en : out std_logic
         -- ula_src : out std_logic;
     );
 end entity control_unit;
@@ -39,12 +40,22 @@ begin
         state => state_s
     );
 
+    -- Program Counter
     pc_wr_en <=
-        '1' when state_s = "00" else
+        '1' when state_s = "10" else
         '0';
 
     jump_en <=
         '1' when op_code = "1111" else
         '0';
+
+    -- ULA
+    ula_en <=
+        '1' when state_s = "01" else
+        '0';
+
+    ula_op <=
+        "00" when op_code = "0000" else
+        "00";
 
 end architecture a_control_unit;

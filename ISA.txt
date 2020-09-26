@@ -1,0 +1,9 @@
+ISA:
+
+16-bit instructions
+
+ADD: 
+
+Assembly: ADD $rd,$rs,$rt
+Equivalent: $rd = $rs + $rt
+Encoding: 0000 0sss 0ttt 0ddd

@@ -16,8 +16,8 @@ end entity rom;
 architecture a_rom of rom is
     type mem is array (0 to 127) of unsigned(15 downto 0);
     constant rom_content : mem := (
-    0 => "0000000000000010",
-    1 => "1000000000000000",
+    0 => b"0000_0000_0000_0010",
+    1 => b"0000_0000_0000_0010",
     2 => "0000000000000000",
     3 => "0000000000000000",
     4 => "1000000000000000",
