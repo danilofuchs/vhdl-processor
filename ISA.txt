@@ -6,4 +6,10 @@ ADD:
 
 Assembly: ADD $rd,$rs,$rt
 Equivalent: $rd = $rs + $rt
-Encoding: 0000 0sss 0ttt 0ddd
+Encoding: 0000 ssst ttdd d000
+
+ADDI: 
+
+Assembly: ADDI $rt,$rs,Imm
+Equivalent: $rt = $rs + Imm
+Encoding: 1000 ssst ttii iiii

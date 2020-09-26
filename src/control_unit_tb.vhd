@@ -20,14 +20,23 @@ architecture a_control_unit_tb of control_unit_tb is
             pc_wr_en : out std_logic;
 
             ula_op : out unsigned(1 downto 0);
-            ula_en : out std_logic
+            ula_src : out std_logic;
+
+            -- Changes between rd and rt
+            reg_dest : out std_logic;
+            reg_wr_en : out std_logic
         );
     end component;
 
     signal clk_s, rst_s : std_logic := '0';
     signal op_code_s : unsigned(3 downto 0) := "0000";
     signal jump_en_s, pc_wr_en_s, ula_en_s : std_logic := '0';
+
     signal ula_op_s : unsigned(1 downto 0) := "00";
+    signal ula_src_s : std_logic := '0';
+
+    signal reg_dest_s, reg_wr_en_s : std_logic := '0';
+
 begin
 
     uut : control_unit port map(
@@ -39,7 +48,10 @@ begin
         pc_wr_en => pc_wr_en_s,
 
         ula_op => ula_op_s,
-        ula_en => ula_en_s
+        ula_src => ula_src_s,
+
+        reg_dest => reg_dest_s,
+        reg_wr_en => reg_wr_en_s
     );
 
     process -- clock process

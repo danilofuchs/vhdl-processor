@@ -16,8 +16,11 @@ entity control_unit is
         pc_wr_en : out std_logic;
 
         ula_op : out unsigned(1 downto 0);
-        ula_en : out std_logic
-        -- ula_src : out std_logic;
+        ula_src : out std_logic;
+
+        -- Changes between rd and rt
+        reg_dest : out std_logic;
+        reg_wr_en : out std_logic
     );
 end entity control_unit;
 
@@ -42,20 +45,40 @@ begin
 
     -- Program Counter
     pc_wr_en <=
+        -- State 2
         '1' when state_s = "10" else
         '0';
 
     jump_en <=
+        -- Type J instructions
         '1' when op_code = "1111" else
+        -- Type I, R
         '0';
 
     -- ULA
-    ula_en <=
+    ula_op <=
+        -- Type R
+        "00" when op_code = "0000" else -- ADD
+        -- Type I
+        "00" when op_code = "1000" else -- ADDI
+        "00";
+
+    ula_src <=
+        -- Type I instructions
+        '1' when op_code = "1000" else
+        -- Type R
+        '0';
+
+    -- Regs
+    reg_wr_en <=
+        -- State 3
         '1' when state_s = "01" else
         '0';
 
-    ula_op <=
-        "00" when op_code = "0000" else
-        "00";
+    reg_dest <=
+        -- Type R instructions
+        '1' when op_code = "0000" else
+        -- Type I
+        '0';
 
 end architecture a_control_unit;

@@ -42,7 +42,11 @@ architecture a_processor of processor is
             pc_wr_en : out std_logic;
 
             ula_op : out unsigned(1 downto 0);
-            ula_en : out std_logic
+            ula_src : out std_logic;
+
+            -- Changes between rd and rt
+            reg_dest : out std_logic;
+            reg_wr_en : out std_logic
         );
     end component control_unit;
 
@@ -79,13 +83,24 @@ architecture a_processor of processor is
 
     signal instruction_s : unsigned(15 downto 0) := "0000000000000000";
 
+    -- PC
     signal pc_in_s, pc_out_s : unsigned(15 downto 0) := "0000000000000000";
     signal jump_en_s, pc_wr_en_s : std_logic := '0';
 
+    -- ULA
     signal ula_op_s : unsigned(1 downto 0) := "00";
+    signal ula_src_s : std_logic;
     signal ula_flag_s : std_logic;
+    signal ula_in_b_s : unsigned(15 downto 0);
 
+    -- Regs
     signal rd1_s, rd2_s, wd3_s : unsigned(15 downto 0);
+    signal reg_dest_s, reg_wr_en_s : std_logic;
+    signal a3_s : unsigned(2 downto 0);
+
+    -- Instruction decoding
+    signal rs_s, rt_s, rd_s : unsigned(2 downto 0);
+    signal imm_s : unsigned(5 downto 0);
 
 begin
     pc_component : reg16bits port map(
@@ -110,19 +125,25 @@ begin
         op_code => instruction_s(15 downto 12),
 
         jump_en => jump_en_s,
-        pc_wr_en => pc_wr_en_s
+        pc_wr_en => pc_wr_en_s,
+
+        ula_op => ula_op_s,
+        ula_src => ula_src_s,
+
+        reg_dest => reg_dest_s,
+        reg_wr_en => reg_wr_en_s
     );
 
     regs_component : register_file port map(
         clk => clk,
         rst => rst,
 
-        we3 => '1', -- TODO: Disable conditionally
+        we3 => reg_wr_en_s,
         wd3 => wd3_s,
 
-        a1 => instruction_s(10 downto 8),
-        a2 => instruction_s(6 downto 4),
-        a3 => instruction_s(2 downto 0),
+        a1 => rs_s,
+        a2 => rt_s,
+        a3 => a3_s, -- rd (type R ops) or rt (type I ops)
 
         rd1 => rd1_s,
         rd2 => rd2_s
@@ -130,15 +151,34 @@ begin
 
     ula_component : ula port map(
         in_a => rd1_s,
-        in_b => rd2_s, -- TODO: Get from immediate
+        in_b => ula_in_b_s,
 
         op => ula_op_s,
         out_s => wd3_s,
         flag => ula_flag_s
     );
 
+    rs_s <= instruction_s(11 downto 9);
+    rt_s <= instruction_s(8 downto 6);
+    rd_s <= instruction_s(5 downto 3);
+    imm_s <= instruction_s(5 downto 0);
+
+    a3_s <=
+        -- Type R
+        rd_s when reg_dest_s = '1' else
+        -- Type I
+        rt_s;
+
+    ula_in_b_s <=
+        -- Type I
+        "0000000000" & imm_s when ula_src_s = '1' else
+        -- Type R
+        rd2_s;
+
     pc_in_s <=
+        -- Type J
         "0000" & instruction_s(11 downto 0) when jump_en_s = '1' else
+        -- Type I, R
         pc_out_s + 1;
 
 end architecture a_processor;
