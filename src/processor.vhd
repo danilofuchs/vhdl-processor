@@ -35,7 +35,8 @@ architecture a_processor of processor is
 
             op_code : in unsigned(3 downto 0);
 
-            jump_en : out std_logic
+            jump_en : out std_logic;
+            pc_wr_en : out std_logic
 
             -- ula_op : out unsigned(1 downto 0);
             -- ula_src : out std_logic;
@@ -44,13 +45,13 @@ architecture a_processor of processor is
 
     signal pc_in_s, pc_out_s : unsigned(15 downto 0) := "0000000000000000";
     signal instruction_s : unsigned(11 downto 0) := "000000000000";
-    signal jump_en_s, pc_increment_en_s : std_logic := '0';
+    signal jump_en_s, pc_wr_en_s : std_logic := '0';
 
 begin
     pc_component : reg16bits port map(
         clk => clk,
         rst => rst,
-        wr_en => '1',
+        wr_en => pc_wr_en_s,
         data_in => pc_in_s,
 
         data_out => pc_out_s
@@ -68,7 +69,8 @@ begin
         rst => rst,
         op_code => instruction_s(11 downto 8),
 
-        jump_en => jump_en_s
+        jump_en => jump_en_s,
+        pc_wr_en => pc_wr_en_s
     );
 
     pc_in_s <=

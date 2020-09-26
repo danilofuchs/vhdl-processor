@@ -16,13 +16,14 @@ architecture a_control_unit_tb of control_unit_tb is
 
             op_code : in unsigned(3 downto 0);
 
-            jump_en : out std_logic
+            jump_en : out std_logic;
+            pc_wr_en : out std_logic
         );
     end component;
 
     signal clk_s, rst_s : std_logic := '0';
     signal op_code_s : unsigned(3 downto 0) := "0000";
-    signal jump_en_s : std_logic := '0';
+    signal jump_en_s, pc_wr_en_s : std_logic := '0';
 begin
 
     uut : control_unit port map(
@@ -30,7 +31,8 @@ begin
         rst => rst_s,
         op_code => op_code_s,
 
-        jump_en => jump_en_s
+        jump_en => jump_en_s,
+        pc_wr_en => pc_wr_en_s
     );
 
     process -- clock process
