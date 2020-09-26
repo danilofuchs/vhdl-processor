@@ -14,12 +14,13 @@ architecture a_state_machine_tb of state_machine_tb is
         port (
             clk : in std_logic;
             rst : in std_logic;
-            state : out std_logic
+
+            state : out unsigned(1 downto 0)
         );
     end component;
 
     signal clk_s, rst_s : std_logic := '0';
-    signal state_s : std_logic := '0';
+    signal state_s : unsigned(1 downto 0) := "00";
 
 begin
 
@@ -44,14 +45,18 @@ begin
         wait for 100 ns;
         rst_s <= '0';
 
-        assert state_s = '0' report "state is not 0 initially" severity error;
+        assert state_s = "00" report "state is not 0 initially" severity error;
         wait for 100 ns;
-        assert state_s = '1' report "state does not toggle to 1" severity error;
+        assert state_s = "01" report "state not going to 1" severity error;
+        -- wait for 100 ns;
+        -- assert state_s = "10" report "state not going to 2" severity error;
+        wait for 100 ns;
+        assert state_s = "00" report "state not going to 0" severity error;
 
         wait for 300 ns;
         rst_s <= '1';
         wait for 10 ns;
-        assert state_s = '0' report "rst not resetting state to 0" severity error;
+        assert state_s = "00" report "rst not resetting state to 0" severity error;
         wait for 90 ns;
         rst_s <= '0';
         wait;

@@ -26,11 +26,12 @@ architecture a_control_unit of control_unit is
         port (
             clk : in std_logic;
             rst : in std_logic;
-            state : out std_logic
+
+            state : out unsigned(1 downto 0)
         );
     end component;
 
-    signal state_s : std_logic;
+    signal state_s : unsigned(1 downto 0);
 begin
     state_machine_component : state_machine port map(
         clk => clk,
@@ -39,7 +40,7 @@ begin
     );
 
     pc_wr_en <=
-        '1' when state_s = '1' else
+        '1' when state_s = "00" else
         '0';
 
     jump_en <=
