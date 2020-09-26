@@ -2,11 +2,21 @@ ISA:
 
 16-bit instructions
 
+===== Type R instructions ====
+ ____________________
+|xxxx|sss|ttt|ddd|000|
+ ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+
 ADD: 
 
 Assembly: ADD $rd,$rs,$rt
 Equivalent: $rd = $rs + $rt
 Encoding: 0000 ssst ttdd d000
+
+===== Type I instructions ====
+ ___________________
+|xxxx|sss|ttt|iiiiii|
+ ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 
 ADDI: 
 

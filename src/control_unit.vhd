@@ -15,11 +15,11 @@ entity control_unit is
         jump_en : out std_logic;
         pc_wr_en : out std_logic;
 
-        ula_op : out unsigned(1 downto 0);
-        ula_src : out std_logic;
+        ula_op_sel : out unsigned(1 downto 0);
+        ula_src_sel : out std_logic;
 
         -- Changes between rd and rt
-        reg_dest : out std_logic;
+        reg_dest_sel : out std_logic;
         reg_wr_en : out std_logic
     );
 end entity control_unit;
@@ -56,14 +56,14 @@ begin
         '0';
 
     -- ULA
-    ula_op <=
+    ula_op_sel <=
         -- Type R
         "00" when op_code = "0000" else -- ADD
         -- Type I
         "00" when op_code = "1000" else -- ADDI
         "00";
 
-    ula_src <=
+    ula_src_sel <=
         -- Type I instructions
         '1' when op_code = "1000" else
         -- Type R
@@ -75,7 +75,7 @@ begin
         '1' when state_s = "01" else
         '0';
 
-    reg_dest <=
+    reg_dest_sel <=
         -- Type R instructions
         '1' when op_code = "0000" else
         -- Type I

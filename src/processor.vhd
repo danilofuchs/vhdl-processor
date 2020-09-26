@@ -41,11 +41,11 @@ architecture a_processor of processor is
             jump_en : out std_logic;
             pc_wr_en : out std_logic;
 
-            ula_op : out unsigned(1 downto 0);
-            ula_src : out std_logic;
+            ula_op_sel : out unsigned(1 downto 0);
+            ula_src_sel : out std_logic;
 
             -- Changes between rd and rt
-            reg_dest : out std_logic;
+            reg_dest_sel : out std_logic;
             reg_wr_en : out std_logic
         );
     end component control_unit;
@@ -88,14 +88,14 @@ architecture a_processor of processor is
     signal jump_en_s, pc_wr_en_s : std_logic := '0';
 
     -- ULA
-    signal ula_op_s : unsigned(1 downto 0) := "00";
-    signal ula_src_s : std_logic;
+    signal ula_op_sel_s : unsigned(1 downto 0) := "00";
+    signal ula_src_sel_s : std_logic;
     signal ula_flag_s : std_logic;
     signal ula_in_b_s : unsigned(15 downto 0);
 
     -- Regs
     signal rd1_s, rd2_s, wd3_s : unsigned(15 downto 0);
-    signal reg_dest_s, reg_wr_en_s : std_logic;
+    signal reg_dest_sel_s, reg_wr_en_s : std_logic;
     signal a3_s : unsigned(2 downto 0);
 
     -- Instruction decoding
@@ -127,10 +127,10 @@ begin
         jump_en => jump_en_s,
         pc_wr_en => pc_wr_en_s,
 
-        ula_op => ula_op_s,
-        ula_src => ula_src_s,
+        ula_op_sel => ula_op_sel_s,
+        ula_src_sel => ula_src_sel_s,
 
-        reg_dest => reg_dest_s,
+        reg_dest_sel => reg_dest_sel_s,
         reg_wr_en => reg_wr_en_s
     );
 
@@ -153,7 +153,7 @@ begin
         in_a => rd1_s,
         in_b => ula_in_b_s,
 
-        op => ula_op_s,
+        op => ula_op_sel_s,
         out_s => wd3_s,
         flag => ula_flag_s
     );
@@ -165,13 +165,13 @@ begin
 
     a3_s <=
         -- Type R
-        rd_s when reg_dest_s = '1' else
+        rd_s when reg_dest_sel_s = '1' else
         -- Type I
         rt_s;
 
     ula_in_b_s <=
         -- Type I
-        "0000000000" & imm_s when ula_src_s = '1' else
+        "0000000000" & imm_s when ula_src_sel_s = '1' else
         -- Type R
         rd2_s;
 
