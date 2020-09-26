@@ -13,13 +13,13 @@ architecture a_rom_tb of rom_tb is
         port (
             clk : in std_logic;
             address : in unsigned(6 downto 0);
-            data : out unsigned(11 downto 0)
+            data : out unsigned(15 downto 0)
         );
     end component;
 
     signal clk_s : std_logic := '0';
     signal address_s : unsigned(6 downto 0) := "0000000";
-    signal data_s : unsigned(11 downto 0) := "000000000000";
+    signal data_s : unsigned(15 downto 0) := "0000000000000000";
 begin
 
     uut : rom port map(
@@ -41,12 +41,12 @@ begin
         wait for 100 ns;
         address_s <= "0000000";
         wait for 100 ns;
-        assert data_s = "000000000010" report "incorrect data at address 0x0" severity error;
+        assert data_s = "0000000000000010" report "incorrect data at address 0x0" severity error;
 
         wait for 100 ns;
         address_s <= "0000001";
         wait for 100 ns;
-        assert data_s = "100000000000" report "incorrect data at address 0x1" severity error;
+        assert data_s = "1000000000000000" report "incorrect data at address 0x1" severity error;
         wait;
     end process;
 end architecture a_rom_tb;

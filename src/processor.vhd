@@ -14,7 +14,7 @@ architecture a_processor of processor is
         port (
             clk : in std_logic;
             address : in unsigned(6 downto 0);
-            data : out unsigned(11 downto 0)
+            data : out unsigned(15 downto 0)
         );
     end component;
 
@@ -44,7 +44,7 @@ architecture a_processor of processor is
     end component;
 
     signal pc_in_s, pc_out_s : unsigned(15 downto 0) := "0000000000000000";
-    signal instruction_s : unsigned(11 downto 0) := "000000000000";
+    signal instruction_s : unsigned(15 downto 0) := "0000000000000000";
     signal jump_en_s, pc_wr_en_s : std_logic := '0';
 
 begin
@@ -67,14 +67,14 @@ begin
     control_unit_component : control_unit port map(
         clk => clk,
         rst => rst,
-        op_code => instruction_s(11 downto 8),
+        op_code => instruction_s(15 downto 12),
 
         jump_en => jump_en_s,
         pc_wr_en => pc_wr_en_s
     );
 
     pc_in_s <=
-        "00000000" & instruction_s(7 downto 0) when jump_en_s = '1' else
+        "0000" & instruction_s(11 downto 0) when jump_en_s = '1' else
         pc_out_s + 1;
 
 end architecture a_processor;
