@@ -15,32 +15,28 @@ entity ula is
         -- "11" -> more than or equals to: a >= b
         op : in unsigned(1 downto 0);
 
-        out_s : out unsigned(15 downto 0);
-        flag : out std_logic
+        result : out unsigned(15 downto 0);
+        zero_flag : out std_logic
     );
 end entity ula;
 
 architecture a_ula of ula is
-    signal result : unsigned(15 downto 0) := "0000000000000000";
-    signal flag_result : std_logic := '0';
+    signal result_s : unsigned(15 downto 0) := "0000000000000000";
 begin
-
-    result <=
+    result_s <=
         -- SUM
         in_a + in_b when op = "00" else
         -- SUBTRACTION
         in_a - in_b when op = "01" else
+        -- LT
+        "0000000000000001" when op = "10" and in_a < in_b else
+        -- GTE
+        "0000000000000001" when op = "11" and in_a >= in_b else
         "0000000000000000";
 
-    flag_result <=
-        -- LESS THAN
-        '1' when op = "10" and in_a < in_b else
-        '0' when op = "10" and in_a >= in_b else
-        -- GREATER THAN OR EQUAL TO
-        '1' when op = "11" and in_a >= in_b else
-        '0' when op = "11" and in_a < in_b else
+    zero_flag <=
+        '1' when result_s = "0000000000000000" else
         '0';
 
-    out_s <= result;
-    flag <= flag_result;
+    result <= result_s;
 end architecture a_ula;

@@ -76,8 +76,8 @@ architecture a_processor of processor is
             -- "11" -> more than or equals to: a >= b
             op : in unsigned(1 downto 0);
 
-            out_s : out unsigned(15 downto 0);
-            flag : out std_logic
+            result : out unsigned(15 downto 0);
+            zero_flag : out std_logic
         );
     end component ula;
 
@@ -90,7 +90,7 @@ architecture a_processor of processor is
     -- ULA
     signal ula_op_sel_s : unsigned(1 downto 0) := "00";
     signal ula_src_sel_s : std_logic;
-    signal ula_flag_s : std_logic;
+    signal ula_zero_flag_s : std_logic;
     signal ula_in_b_s : unsigned(15 downto 0);
 
     -- Regs
@@ -154,8 +154,8 @@ begin
         in_b => ula_in_b_s,
 
         op => ula_op_sel_s,
-        out_s => wd3_s,
-        flag => ula_flag_s
+        result => wd3_s,
+        zero_flag => ula_zero_flag_s
     );
 
     rs_s <= instruction_s(11 downto 9);
