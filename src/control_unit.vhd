@@ -58,8 +58,8 @@ begin
     -- ULA
     ula_op_sel <=
         -- Type R
-        "00" when op_code = "0000" else -- ADD
-        "01" when op_code = "0001" else -- SUB
+        "00" when op_code = "0001" else -- ADD
+        "01" when op_code = "0010" else -- SUB
         -- Type I
         "00" when op_code = "1000" else -- ADDI
         "00";
@@ -73,13 +73,19 @@ begin
     -- Regs
     reg_wr_en <=
         -- State 3
-        '1' when state_s = "01" else
+        '1' when state_s = "01" and (
+        -- Type R
+        op_code = "0001" or -- ADD
+        op_code = "0010" or -- SUB
+        -- Type I
+        op_code = "1000" -- ADDI
+        ) else
         '0';
 
     reg_dest_sel <=
         -- Type R instructions
-        '1' when op_code = "0000" else -- ADD
-        '1' when op_code = "0001" else -- SUB
+        '1' when op_code = "0001" else -- ADD
+        '1' when op_code = "0010" else -- SUB
         -- Type I
         '0';
 
