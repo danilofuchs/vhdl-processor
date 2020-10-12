@@ -1,0 +1,43 @@
+ISA:
+
+16-bit instructions
+
+===== Type R instructions ====
+ ____________________
+|xxxx|sss|ttt|ddd|000|
+ ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+
+ADD: 
+
+Assembly: ADD $rd,$rs,$rt
+Equivalent: $rd = $rs + $rt
+Encoding: 0000_sss_ttt_ddd_000
+
+
+SUB: 
+
+Assembly: SUB $rd,$rs,$rt
+Equivalent: $rd = $rs + $rt
+Encoding: 0001_sss_ttt_ddd_000
+
+===== Type I instructions ====
+ ___________________
+|xxxx|sss|ttt|iiiiii|
+ ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+
+ADDI: 
+
+Assembly: ADDI $rt,$rs,Imm
+Equivalent: $rt = $rs + Imm
+Encoding: 1000_sss_ttt_iiiiii
+
+
+===== Type J instructions =====
+ _________________
+|xxxx|iiiiiiiiiiii|
+ ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+
+J:
+
+Assembly: J Imm
+Encoding: 1111_iiiiiiiiiiii
