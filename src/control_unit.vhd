@@ -60,6 +60,7 @@ begin
         -- Type R
         "00" when op_code = "0001" else -- ADD
         "01" when op_code = "0010" else -- SUB
+        "10" when op_code = "0011" else -- SLT
         -- Type I
         "00" when op_code = "1000" else -- ADDI
         "00";
@@ -77,6 +78,7 @@ begin
         -- Type R
         op_code = "0001" or -- ADD
         op_code = "0010" or -- SUB
+        op_code = "0011" or -- SLT
         -- Type I
         op_code = "1000" -- ADDI
         ) else
@@ -86,6 +88,7 @@ begin
         -- Type R instructions
         '1' when op_code = "0001" else -- ADD
         '1' when op_code = "0010" else -- SUB
+        '1' when op_code = "0011" else -- SLT
         -- Type I
         '0';
 

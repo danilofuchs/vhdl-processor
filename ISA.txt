@@ -17,14 +17,22 @@ ADD: Adds two registers
 
 Assembly: ADD $rd,$rs,$rt
 Equivalent: $rd = $rs + $rt
-Encoding: 0001_sss_ttt_ddd_000
+Encoding: 0001_sss_ttt_ddd_xxx
 
 
 SUB: Subtracts two registers
 
 Assembly: SUB $rd,$rs,$rt
 Equivalent: $rd = $rs + $rt
-Encoding: 0010_sss_ttt_ddd_000
+Encoding: 0010_sss_ttt_ddd_xxx
+
+
+SLT: Set if Less Than
+
+Assembly: SLT $rd,$rs,$rt
+Equivalent: $rd = $rs < $rt ? 0x1 : 0x0
+Encoding: 0011_sss_ttt_ddd_xxx
+
 
 ===== Type I instructions ====
  ___________________
@@ -47,3 +55,4 @@ J: Absolute jump
 
 Assembly: J Imm
 Encoding: 1111_iiiiiiiiiiii
+
