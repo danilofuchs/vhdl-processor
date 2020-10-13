@@ -2,6 +2,8 @@ ISA:
 
 16-bit instructions
 
+---
+
 NOP: Skips instruction
 
 Assembly: NOP
@@ -19,6 +21,7 @@ Assembly: ADD $rd,$rs,$rt
 Equivalent: $rd = $rs + $rt
 Encoding: 0001_sss_ttt_ddd_xxx
 
+---
 
 SUB: Subtracts two registers
 
@@ -26,6 +29,7 @@ Assembly: SUB $rd,$rs,$rt
 Equivalent: $rd = $rs + $rt
 Encoding: 0010_sss_ttt_ddd_xxx
 
+---
 
 SLT: Set if Less Than
 
@@ -45,6 +49,12 @@ Assembly: ADDI $rt,$rs,Imm
 Equivalent: $rt = $rs + Imm
 Encoding: 1000_sss_ttt_iiiiii
 
+---
+
+BEQ: Jumps to a instruction if both registers are equal. Relative Jump
+Assembly: BEQ $rt,$rs,Imm
+Equivalent: if ($rt == $rs) { PC = PC + 1 + Imm }
+Encoding: 1100_sss_ttt_iiiiii
 
 ===== Type J instructions =====
  _________________
@@ -56,3 +66,4 @@ J: Absolute jump
 Assembly: J Imm
 Encoding: 1111_iiiiiiiiiiii
 
+---

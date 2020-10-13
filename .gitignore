@@ -7,3 +7,6 @@
 
 # GTKWave
 *.gtkw
+
+# HDL Checker VSCode plugin
+.hdl_checker

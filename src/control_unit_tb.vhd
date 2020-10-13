@@ -18,6 +18,7 @@ architecture a_control_unit_tb of control_unit_tb is
 
             jump_en : out std_logic;
             pc_wr_en : out std_logic;
+            branch_en : out std_logic;
 
             ula_op_sel : out unsigned(1 downto 0);
             ula_src_sel : out std_logic;
@@ -30,7 +31,7 @@ architecture a_control_unit_tb of control_unit_tb is
 
     signal clk_s, rst_s : std_logic := '0';
     signal op_code_s : unsigned(3 downto 0) := "0000";
-    signal jump_en_s, pc_wr_en_s, ula_en_s : std_logic := '0';
+    signal jump_en_s, pc_wr_en_s, ula_en_s, branch_en_s : std_logic := '0';
 
     signal ula_op_sel_s : unsigned(1 downto 0) := "00";
     signal ula_src_sel_s : std_logic := '0';
@@ -46,6 +47,7 @@ begin
 
         jump_en => jump_en_s,
         pc_wr_en => pc_wr_en_s,
+        branch_en => branch_en_s,
 
         ula_op_sel => ula_op_sel_s,
         ula_src_sel => ula_src_sel_s,

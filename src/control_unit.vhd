@@ -14,6 +14,7 @@ entity control_unit is
 
         jump_en : out std_logic;
         pc_wr_en : out std_logic;
+        branch_en : out std_logic;
 
         ula_op_sel : out unsigned(1 downto 0);
         ula_src_sel : out std_logic;
@@ -51,8 +52,13 @@ begin
 
     jump_en <=
         -- Type J instructions
-        '1' when op_code = "1111" else
+        '1' when op_code = "1111" else -- J
         -- Type I, R
+        '0';
+
+    branch_en <=
+        -- Branch instructions
+        '1' when op_code = "1100" else -- BEQ
         '0';
 
     -- ULA
@@ -63,11 +69,14 @@ begin
         "10" when op_code = "0011" else -- SLT
         -- Type I
         "00" when op_code = "1000" else -- ADDI
+        "01" when op_code = "1100" else -- BEQ -- Subtract one from other, check zero flag
         "00";
 
     ula_src_sel <=
         -- Type I instructions
-        '1' when op_code = "1000" else
+        '1' when op_code = "1000" else -- ADDI
+        -- Branch compares two registers
+        '0' when op_code = "1100" else -- BEQ
         -- Type R
         '0';
 
@@ -81,6 +90,7 @@ begin
         op_code = "0011" or -- SLT
         -- Type I
         op_code = "1000" -- ADDI
+        -- DO NOT WRITE ON BRANCHES op_code = "1100" -- BEQ
         ) else
         '0';
 

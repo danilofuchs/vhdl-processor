@@ -40,6 +40,7 @@ architecture a_processor of processor is
 
             jump_en : out std_logic;
             pc_wr_en : out std_logic;
+            branch_en : out std_logic;
 
             ula_op_sel : out unsigned(1 downto 0);
             ula_src_sel : out std_logic;
@@ -85,7 +86,8 @@ architecture a_processor of processor is
 
     -- PC
     signal pc_in_s, pc_out_s : unsigned(15 downto 0) := "0000000000000000";
-    signal jump_en_s, pc_wr_en_s : std_logic := '0';
+    signal jump_en_s, branch_en_s, pc_wr_en_s : std_logic := '0';
+    signal pc_src_s : unsigned(1 downto 0) := "00";
 
     -- ULA
     signal ula_op_sel_s : unsigned(1 downto 0) := "00";
@@ -126,6 +128,7 @@ begin
 
         jump_en => jump_en_s,
         pc_wr_en => pc_wr_en_s,
+        branch_en => branch_en_s,
 
         ula_op_sel => ula_op_sel_s,
         ula_src_sel => ula_src_sel_s,
@@ -175,10 +178,18 @@ begin
         -- Type R
         rd2_s;
 
+    pc_src_s <=
+        "01" when branch_en_s = '1' and ula_zero_flag_s = '1' else
+        "10" when jump_en_s = '1' else
+        "00";
+
     pc_in_s <=
-        -- Type J
-        "0000" & instruction_s(11 downto 0) when jump_en_s = '1' else
-        -- Type I, R
+        -- Branch
+        pc_out_s + unsigned(resize(signed(imm_s), 16)) + 1 -- Needs to be resized to overflow correctly (negative numbers)
+        when pc_src_s = "01" else
+        -- Jump
+        "0000" & instruction_s(11 downto 0) when pc_src_s = "10" else
+        -- Default
         pc_out_s + 1;
 
 end architecture a_processor;
