@@ -10,6 +10,10 @@ entity state_machine is
         clk : in std_logic;
         rst : in std_logic;
 
+        -- 00 = FETCH
+        -- 01 = DECODE
+        -- 10 = EXECUTION
+        -- 11 = MEMORY ACCESS
         state : out unsigned(1 downto 0)
     );
 end entity state_machine;
@@ -25,7 +29,7 @@ begin
         if rst = '1' then
             state_s <= "00";
         elsif rising_edge(clk) then
-            if state_s = "10" then
+            if state_s = "11" then
                 state_s <= "00";
             else
                 state_s <= state_s + 1;

@@ -20,23 +20,33 @@ architecture a_control_unit_tb of control_unit_tb is
             pc_wr_en : out std_logic;
             branch_en : out std_logic;
 
+            -- Selects between available ULA operations
             ula_op_sel : out unsigned(1 downto 0);
+            -- Selects if ULA should get value A from instruction ('1') or from register ('0')
             ula_src_sel : out std_logic;
 
-            -- Changes between rd and rt
+            -- Changes between rd ('1') and rt ('0')
             reg_dest_sel : out std_logic;
-            reg_wr_en : out std_logic
+            -- Enables write of registers
+            reg_wr_en : out std_logic;
+
+            -- Selects if will use value from memory ('1') or ULA ('0') to write to register file
+            mem_to_reg_sel : out std_logic;
+            -- Enables writes on memory
+            mem_wr_en : out std_logic
         );
     end component;
 
     signal clk_s, rst_s : std_logic := '0';
     signal op_code_s : unsigned(3 downto 0) := "0000";
-    signal jump_en_s, pc_wr_en_s, ula_en_s, branch_en_s : std_logic := '0';
+    signal jump_en_s, pc_wr_en_s, branch_en_s : std_logic := '0';
 
     signal ula_op_sel_s : unsigned(1 downto 0) := "00";
     signal ula_src_sel_s : std_logic := '0';
 
     signal reg_dest_sel_s, reg_wr_en_s : std_logic := '0';
+
+    signal mem_to_reg_sel_s, mem_wr_en_s : std_logic := '0';
 
 begin
 
@@ -53,7 +63,10 @@ begin
         ula_src_sel => ula_src_sel_s,
 
         reg_dest_sel => reg_dest_sel_s,
-        reg_wr_en => reg_wr_en_s
+        reg_wr_en => reg_wr_en_s,
+
+        mem_to_reg_sel => mem_to_reg_sel_s,
+        mem_wr_en => mem_wr_en_s
     );
 
     process -- clock process

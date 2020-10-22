@@ -42,12 +42,20 @@ architecture a_processor of processor is
             pc_wr_en : out std_logic;
             branch_en : out std_logic;
 
+            -- Selects between available ULA operations
             ula_op_sel : out unsigned(1 downto 0);
+            -- Selects if ULA should get value A from instruction ('1') or from register ('0')
             ula_src_sel : out std_logic;
 
-            -- Changes between rd and rt
+            -- Changes between rd ('1') and rt ('0')
             reg_dest_sel : out std_logic;
-            reg_wr_en : out std_logic
+            -- Enables write of registers
+            reg_wr_en : out std_logic;
+
+            -- Selects if will use value from memory ('1') or ULA ('0') to write to register file
+            mem_to_reg_sel : out std_logic;
+            -- Enables writes on memory
+            mem_wr_en : out std_logic
         );
     end component control_unit;
 
@@ -82,6 +90,17 @@ architecture a_processor of processor is
         );
     end component ula;
 
+    component ram is
+        port (
+            clk : in std_logic;
+            wr_en : in std_logic;
+
+            address : in unsigned(6 downto 0);
+            data_in : in unsigned(15 downto 0);
+            data_out : out unsigned(15 downto 0)
+        );
+    end component;
+
     signal instruction_s : unsigned(15 downto 0) := "0000000000000000";
 
     -- PC
@@ -99,6 +118,9 @@ architecture a_processor of processor is
     signal rd1_s, rd2_s, wd3_s : unsigned(15 downto 0);
     signal reg_dest_sel_s, reg_wr_en_s : std_logic;
     signal a3_s : unsigned(2 downto 0);
+
+    -- RAM
+    signal mem_to_reg_sel_s, mem_wr_en_s : std_logic;
 
     -- Instruction decoding
     signal rs_s, rt_s, rd_s : unsigned(2 downto 0);
@@ -134,7 +156,10 @@ begin
         ula_src_sel => ula_src_sel_s,
 
         reg_dest_sel => reg_dest_sel_s,
-        reg_wr_en => reg_wr_en_s
+        reg_wr_en => reg_wr_en_s,
+
+        mem_to_reg_sel => mem_to_reg_sel_s,
+        mem_wr_en => mem_wr_en_s
     );
 
     regs_component : register_file port map(
@@ -159,6 +184,16 @@ begin
         op => ula_op_sel_s,
         result => wd3_s,
         zero_flag => ula_zero_flag_s
+    );
+
+    ram_component : ram port map(
+        clk => clk,
+
+        wr_en => mem_wr_en_s,
+        address => rd1_s(6 downto 0), -- $rs
+
+        data_in => rd2_s -- $rt
+        -- data_out => 
     );
 
     rs_s <= instruction_s(11 downto 9);

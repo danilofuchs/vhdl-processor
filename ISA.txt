@@ -37,6 +37,13 @@ Assembly: SLT $rd,$rs,$rt
 Equivalent: $rd = $rs < $rt ? 0x1 : 0x0
 Encoding: 0011_sss_ttt_ddd_xxx
 
+---
+
+SW: Store Word - Saves value in a RAM address
+Assembly: SW $rt,($rs)
+Equivalent: RAM[$rs] = $rt
+Encoding: 0100_sss_ttt_xxxxxx
+
 
 ===== Type I instructions ====
  ___________________

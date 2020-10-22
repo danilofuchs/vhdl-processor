@@ -16,12 +16,20 @@ entity control_unit is
         pc_wr_en : out std_logic;
         branch_en : out std_logic;
 
+        -- Selects between available ULA operations
         ula_op_sel : out unsigned(1 downto 0);
+        -- Selects if ULA should get value A from instruction ('1') or from register ('0')
         ula_src_sel : out std_logic;
 
-        -- Changes between rd and rt
+        -- Changes between rd ('1') and rt ('0')
         reg_dest_sel : out std_logic;
-        reg_wr_en : out std_logic
+        -- Enables write of registers
+        reg_wr_en : out std_logic;
+
+        -- Selects if will use value from memory ('1') or ULA ('0') to write to register file
+        mem_to_reg_sel : out std_logic;
+        -- Enables writes on memory
+        mem_wr_en : out std_logic
     );
 end entity control_unit;
 
@@ -32,6 +40,10 @@ architecture a_control_unit of control_unit is
             clk : in std_logic;
             rst : in std_logic;
 
+            -- 00 = FETCH
+            -- 01 = DECODE
+            -- 10 = EXECUTION
+            -- 11 = MEMORY ACCESS
             state : out unsigned(1 downto 0)
         );
     end component;
@@ -75,14 +87,14 @@ begin
     ula_src_sel <=
         -- Type I instructions
         '1' when op_code = "1000" else -- ADDI
-        -- Branch compares two registers
+        -- Branch compares two registers (just like type R)
         '0' when op_code = "1100" else -- BEQ
         -- Type R
         '0';
 
     -- Regs
     reg_wr_en <=
-        -- State 3
+        -- State 3 - Write to registers
         '1' when state_s = "01" and (
         -- Type R
         op_code = "0001" or -- ADD
@@ -99,7 +111,17 @@ begin
         '1' when op_code = "0001" else -- ADD
         '1' when op_code = "0010" else -- SUB
         '1' when op_code = "0011" else -- SLT
+        -- RAM
+        '0' when op_code = "0100" else -- SW
         -- Type I
         '0';
 
+    -- RAM
+    mem_to_reg_sel <=
+        '0';
+
+    mem_wr_en <=
+        '1' when state_s = "11" -- STATE 4
+        and op_code = "0100" else -- SW
+        '0';
 end architecture a_control_unit;
