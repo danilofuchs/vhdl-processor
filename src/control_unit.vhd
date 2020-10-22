@@ -94,15 +94,16 @@ begin
 
     -- Regs
     reg_wr_en <=
-        -- State 3 - Write to registers
-        '1' when state_s = "01" and (
+        -- State 4 - Write to registers
+        '1' when state_s = "11" and (
         -- Type R
         op_code = "0001" or -- ADD
         op_code = "0010" or -- SUB
         op_code = "0011" or -- SLT
         -- Type I
-        op_code = "1000" -- ADDI
+        op_code = "1000" or -- ADDI
         -- DO NOT WRITE ON BRANCHES op_code = "1100" -- BEQ
+        op_code = "0101" -- LW
         ) else
         '0';
 
@@ -118,10 +119,12 @@ begin
 
     -- RAM
     mem_to_reg_sel <=
+        '1' when state_s = "11" and -- STATE 4 - Write to registers
+        op_code = "0101" else -- LW - Save to reg value read from memory
         '0';
 
     mem_wr_en <=
-        '1' when state_s = "11" -- STATE 4
-        and op_code = "0100" else -- SW
+        '1' when state_s = "10" and -- STATE 3 - Memory interactions
+        op_code = "0100" else -- SW
         '0';
 end architecture a_control_unit;

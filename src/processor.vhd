@@ -113,6 +113,7 @@ architecture a_processor of processor is
     signal ula_src_sel_s : std_logic;
     signal ula_zero_flag_s : std_logic;
     signal ula_in_b_s : unsigned(15 downto 0);
+    signal ula_out_s : unsigned(15 downto 0);
 
     -- Regs
     signal rd1_s, rd2_s, wd3_s : unsigned(15 downto 0);
@@ -121,6 +122,7 @@ architecture a_processor of processor is
 
     -- RAM
     signal mem_to_reg_sel_s, mem_wr_en_s : std_logic;
+    signal ram_data_out_s : unsigned(15 downto 0);
 
     -- Instruction decoding
     signal rs_s, rt_s, rd_s : unsigned(2 downto 0);
@@ -182,7 +184,7 @@ begin
         in_b => ula_in_b_s,
 
         op => ula_op_sel_s,
-        result => wd3_s,
+        result => ula_out_s,
         zero_flag => ula_zero_flag_s
     );
 
@@ -192,8 +194,8 @@ begin
         wr_en => mem_wr_en_s,
         address => rd1_s(6 downto 0), -- $rs
 
-        data_in => rd2_s -- $rt
-        -- data_out => 
+        data_in => rd2_s, -- $rt
+        data_out => ram_data_out_s
     );
 
     rs_s <= instruction_s(11 downto 9);
@@ -206,6 +208,10 @@ begin
         rd_s when reg_dest_sel_s = '1' else
         -- Type I
         rt_s;
+
+    wd3_s <=
+        ram_data_out_s when mem_to_reg_sel_s = '1' else -- Use data from memory
+        ula_out_s; -- Use data from ULA
 
     ula_in_b_s <=
         -- Type I

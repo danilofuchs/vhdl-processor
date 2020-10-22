@@ -39,10 +39,17 @@ Encoding: 0011_sss_ttt_ddd_xxx
 
 ---
 
-SW: Store Word - Saves value in a RAM address
+SW: Store Word - Stores value from register into a RAM address
 Assembly: SW $rt,($rs)
 Equivalent: RAM[$rs] = $rt
 Encoding: 0100_sss_ttt_xxxxxx
+
+---
+
+LW: Load Word - Loads value from RAM address into register
+Assembly: LW $rt,($rs)
+Equivalent: $rt = RAM[$rs]
+Encoding: 0101_sss_ttt_xxxxxx
 
 
 ===== Type I instructions ====
