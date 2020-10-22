@@ -70,4 +70,4 @@ processor:
 	ghdl -e processor
 	ghdl -a src/processor_tb.vhd
 	ghdl -e processor_tb
-	ghdl -r processor_tb --stop-time=40us --wave=src/processor_tb.ghw
+	ghdl -r processor_tb --stop-time=300us --wave=src/processor_tb.ghw
