@@ -11,7 +11,7 @@ int main(void) {
   int nums[ARR_SIZE + 1];
 
   for (int i = 1; i <= ARR_SIZE; i++) {
-    nums[i] = 1;
+    nums[i] = i;
   }
 
   for (int i = 4; i <= ARR_SIZE; i += 2) {

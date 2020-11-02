@@ -5,10 +5,9 @@
 	.data
 array:	.space	128
 	.text
-addi 	$t1,$zero,1
 addi	$t2,$zero,32
 addi	$t3,$zero,1
-seed:	sb	$t1,array($t3)
+seed:	sb	$t3,array($t3)
 	addi 	$t3,$t3,1
 	slt	$t4,$t3,$t2
 	beq	$t4,1,seed

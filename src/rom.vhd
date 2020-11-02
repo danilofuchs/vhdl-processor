@@ -16,12 +16,12 @@ end entity rom;
 architecture a_rom of rom is
     type mem is array (0 to 127) of unsigned(15 downto 0);
     constant rom_content : mem := (
-        0 => b"1000_000_001_000001", --  ADDI R1, R0, #1     -- R1 = 1  -- Data
+        0 => (others => '0'), --         NOP
         1 => b"1000_000_010_100001", --  ADDI R2, R0, #33    -- R2 = 33 -- Array size + 1
         2 => b"1000_000_011_000001", --  ADDI R3, R0, #1     -- R3 = 1  -- Index (i)
         3 => b"1000_000_111_000001", --  ADDI R7, R0, #1     -- R7 = 1  -- const 1
 
-        4 => b"0100_011_001_000000", --  seed: SW R1, (R3)         -- mem[R3] = R1    -- mem[i] = data = 1
+        4 => b"0100_011_011_000000", --  seed: SW R3, (R3)         -- mem[R3] = R3    -- mem[i] = i
         5 => b"1000_011_011_000001", --        ADDI R3, R3, #1     -- R3++            -- i++
         6 => b"0011_011_010_100_000", --       SLT  R4, R3, R2     -- R4 = R3 < R2    -- i < 33
         7 => b"1100_100_111_111100", --        BEQ  R4, R7, #-4    -- if (r4 == 1) { goto seed (-4) }
